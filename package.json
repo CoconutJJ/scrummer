@@ -17,7 +17,9 @@
   "scripts": {
     "build-srv": "npx tsc --p tsconfig.srv.json",
     "build-client": "npx webpack",
-    "start": "node build/server.js"
+    "start": "node build/server.js",
+    "test-client": "npx jest tests/client",
+    "test-srv": "npx jest tests/srv"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -35,11 +37,16 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.10.3",
+    "@babel/preset-env": "^7.10.3",
+    "@babel/preset-typescript": "^7.10.1",
     "@types/react": "^16.9.41",
     "@types/react-dom": "^16.9.8",
+    "babel-jest": "^26.1.0",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.6.0",
     "html-webpack-plugin": "^4.3.0",
+    "jest": "^26.1.0",
     "node-sass": "^4.14.1",
     "sass-loader": "^8.0.2",
     "style-loader": "^1.2.1",
