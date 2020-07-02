@@ -1,4 +1,3 @@
-const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
@@ -7,10 +6,16 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const config = {
   entry: './src/index.tsx',
   output: {
-    path: path.resolve(__dirname, 'build'),
-    filename: '[name].[contenthash].js'
+    publicPath: '/static',
+    path: path.resolve(__dirname, 'build', "assets"),
+    filename: '[name].[content hash].js'
   },
-  mode: "production",
+  mode: process.env.NODE_ENV,
+  devServer: {
+    contentBase: './build/public',
+    publicPath: './build/assets',
+    hot: true
+  },
   module: {
     rules: [
       {
@@ -38,9 +43,10 @@ const config = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
+      
       appMountId: 'app',
       template: "public/index.html",
-      filename: 'public/index.html'
+      filename: '../public/index.html'
     })
   ],
   resolve: {
