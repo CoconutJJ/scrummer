@@ -8,7 +8,7 @@ const config = {
   output: {
     publicPath: '/static',
     path: path.resolve(__dirname, 'build', "assets"),
-    filename: '[name].[content hash].js'
+    filename: '[name].[contenthash].js'
   },
   mode: process.env.NODE_ENV,
   devServer: {
@@ -69,7 +69,6 @@ const config = {
     splitChunks: {
       cacheGroups: {
         vendor: {
-          test: /[\\/]node_modules[\\/]/,
           name: 'vendors',
           chunks: 'all'
         }

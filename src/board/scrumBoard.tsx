@@ -1,22 +1,24 @@
 import React from 'react';
-import { Col, Row, Button, Divider } from 'antd'
+import { Col, Row, Button, Divider, Modal } from 'antd'
 
 import 'antd/dist/antd.css'
 import BoardCol from './boardCol';
-
+import TicketForm from '../ticket/ticketForm';
 interface IProps {
 
 }
 
 interface IState {
     cols: Array<JSX.Element>
+    ticketCreateModal: boolean
 }
 class ScrumBoard extends React.Component<IProps, IState> {
 
     constructor(props: Readonly<IProps>) {
         super(props);
         this.state = {
-            cols: []
+            cols: [],
+            ticketCreateModal: false
         }
     }
 
@@ -28,14 +30,32 @@ class ScrumBoard extends React.Component<IProps, IState> {
         
     }
 
+    openCreateTicketModal = () => {
+        this.setState({
+            ticketCreateModal: true
+        })
+    }
 
+    closeCreateTicketModal = () => {
+        this.setState({
+            ticketCreateModal: false
+        })
+    }
 
     render(): React.ReactNode {
         return (
             <>
-                <Button type="primary">Create Ticket</Button>
+                <Button type="primary" onClick={this.openCreateTicketModal}>Create Ticket</Button>
                 <Button type="dashed" onClick={this.addColumn}>Add Column</Button>
-                <Divider/>                
+                <Divider/>       
+                <Modal title="Create Ticket" width={"90%"} visible={this.state.ticketCreateModal} onCancel={this.closeCreateTicketModal} footer={
+                    [
+                        <Button type="dashed" onClick={this.closeCreateTicketModal}>Cancel</Button>,
+                        <Button type="primary">Create</Button>
+                    ]
+                }>
+                    <TicketForm/>
+                </Modal>         
                 <Row gutter={16}>
                     {this.state.cols}
 

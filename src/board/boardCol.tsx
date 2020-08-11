@@ -40,14 +40,36 @@ class BoardCol extends React.Component<IProps, IState> {
 
     }
 
+    onTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        this.setState({
+            title: e.target.value
+        })
+    }
+
+    setEditable = () => {
+        this.setState({
+            editable: true
+        })
+    }
+
     render(): React.ReactNode {
         return (
             <>
                 <div style={{ border: "1px solid gray", padding: "10px", borderRadius: "5px", minHeight: "70vh" }}>
 
-                    <h3 style={{ float: "left" }}>{this.state.editable ? <Input type="text" value={this.state.title} /> : this.props.title}</h3>
+                    <h3 style={{ float: "left" }}>
+                        {
+                            this.state.editable
+                                ? <Input type="text" value={this.state.title} onChange={this.onTitleChange} />
+                                : this.props.title
+                        }
+                    </h3>
 
-                    {!this.state.editable ? <Button style={{ float: "right" }} icon={<EditOutlined />}></Button> : (null)}
+                    {
+                        !this.state.editable
+                            ? <Button style={{ float: "right" }} icon={<EditOutlined />} onClick={this.setEditable}></Button>
+                            : (null)
+                    }
 
                     <div onDrop={this.onDrop} onDragOver={this.onDragOver} style={{ clear: "both" }}>
 

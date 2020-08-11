@@ -1,11 +1,9 @@
 import React from 'react';
-import { Col, Row, Tabs } from 'antd'
-import Ticket from './board/ticket'
+import { Tabs } from 'antd'
 const { TabPane } = Tabs;
 
 import 'antd/dist/antd.css'
 import ScrumBoard from './board/scrumBoard';
-
 interface IProps {
 
 }
@@ -25,10 +23,13 @@ class App extends React.Component<IProps, IState> {
               <ScrumBoard/>
             </TabPane>
             <TabPane tab="Tickets" key="2">
-              Content of Tab Pane 2
+              
             </TabPane>
             <TabPane tab="Charts" key="3">
               Content of Tab Pane 3
+            </TabPane>
+            <TabPane tab="Settings" key="4">
+
             </TabPane>
           </Tabs>
         </div>
