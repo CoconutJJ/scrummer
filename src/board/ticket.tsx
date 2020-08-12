@@ -45,10 +45,6 @@ class Ticket extends React.Component<IProp, IState> {
                 </div>
             </>
         )
-
     }
-
-
-
 }
 export default Ticket;

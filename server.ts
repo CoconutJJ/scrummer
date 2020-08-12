@@ -1,13 +1,17 @@
 import express from 'express'
 import path from 'path'
 import dotenv from 'dotenv'
+import mysql from 'mysql'
+
 const app = express();
 
 const PORT = 3000;
 
+
+
 dotenv.config(
     {
-        path: process.env.NODE_ENV == "PRODUCTION" ? "production.env" : "development.env"
+        path: process.env.NODE_ENV.toUpperCase() == "PRODUCTION" ? "production.env" : "development.env"
     }
 );
 

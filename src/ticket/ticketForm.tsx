@@ -17,15 +17,15 @@ class TicketForm extends React.Component<IProps, IState> {
     render(): React.ReactNode {
         return (
             <Form>
-                <Form.Item label="Issue Type">
-                    <Select>
-                        <Option value="story">User Story</Option>
-                    </Select>
+                <Form.Item label="Title">
+                    <Input type="text" placeholder="Title" />
                 </Form.Item>
                 <Row gutter={16}>
                     <Col span={16}>
-                        <Form.Item label="Title">
-                            <Input type="text" placeholder="Title" />
+                        <Form.Item label="Issue Type">
+                            <Select>
+                                <Option value="story">User Story</Option>
+                            </Select>
                         </Form.Item>
                     </Col>
                     <Col span={4}>

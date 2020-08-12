@@ -8,13 +8,16 @@
     "@testing-library/user-event": "^7.2.1",
     "@types/express": "^4.17.6",
     "@types/jest": "^24.9.1",
+    "@types/mysql": "^2.15.15",
     "@types/node": "^12.12.47",
     "antd": "^4.3.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "mysql": "^2.18.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-redux": "^7.2.0"
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.5"
   },
   "scripts": {
     "build-dev": "npx tsc --p tsconfig.srv.json; NODE_ENV='development' npx webpack; NODE_ENV='development' node build/server.js ",
