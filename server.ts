@@ -7,8 +7,6 @@ const app = express();
 
 const PORT = 3000;
 
-
-
 dotenv.config(
     {
         path: process.env.NODE_ENV.toUpperCase() == "PRODUCTION" ? "production.env" : "development.env"

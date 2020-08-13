@@ -1,20 +1,9 @@
 
-import MySQLDriver from '../../db/mysql-driver'
+import MySQLDriver from '../../db/mysql-driver';
 import DBUtils from '../../db/db-utils';
-export namespace Models {
+import {ITicket} from '../../interfaces/Ticket.interface'
+namespace Models {
 
-
-    interface ITicket {
-        title: string,
-        description: string,
-        reporter: string,
-        issue_type: string,
-        assignee: string,
-        story_points: string,
-        priority: string,
-        due_date: string,
-        attachments: [Blob]
-    }
 
     export class Ticket {
 
@@ -71,3 +60,4 @@ export namespace Models {
     }
 }
 
+export default Models

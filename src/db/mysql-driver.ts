@@ -6,43 +6,61 @@ class MySQLDriver {
 
     private static driver: MySQLDriver = null;
 
-    private constructor() {
-
-        this.mysqlPool = createPool({
-            user: process.env.DB_USER,
-            password: process.env.DB_PASS,
-            database: process.env.DB_NAME,
-            host: process.env.DB_HOST
-        })
-
+    private constructor(pool?: Pool) {
+        if (pool) {
+            this.mysqlPool = pool
+        } else {
+            this.mysqlPool = createPool({
+                user: process.env.DB_USER,
+                password: process.env.DB_PASS,
+                database: process.env.DB_NAME,
+                host: process.env.DB_HOST
+            })
+        }
     }
 
-    public query(query: string, args?: (string|number)[]): Promise<[{}]> {
+    /**
+     * Sends a query to the database and returns results list.
+     * @param query 
+     * @param args 
+     */
+    public query(query: string, args?: (string | number)[]): Promise<[{}]> {
 
         return new Promise(
             (resolve, reject) => {
                 this.mysqlPool.getConnection((err, conn) => {
 
                     if (err) {
-                        reject(err)
+                        reject(err);
                         return
                     }
 
                     conn.query(query, args, (err, results) => {
-                        
+
                         conn.release();
 
                         if (err) {
                             reject(err);
                         } else {
-
                             resolve(results);
                         }
 
                     })
-
                 })
             })
+    }
+
+    /**
+     * DEPENDENCY INJECTION: Overrides the current MySQL pool connection with 
+     * the `pool` connection. Use this only for testing.
+     *
+     * For Production and Development - use `.getDriver()` method
+     * @param pool 
+     */
+    public static usePool(pool: Pool) {
+        MySQLDriver.driver = new MySQLDriver(pool)
+
+        return MySQLDriver.driver;
     }
 
     public static getDriver() {
@@ -55,5 +73,4 @@ class MySQLDriver {
 
     }
 }
-
 export default MySQLDriver;

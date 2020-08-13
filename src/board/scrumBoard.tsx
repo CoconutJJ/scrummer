@@ -54,7 +54,7 @@ class ScrumBoard extends React.Component<IProps, IState> {
                         <Button type="primary">Create</Button>
                     ]
                 }>
-                    <TicketForm/>
+                    <TicketForm onFormUpdate={() => {}}/>
                 </Modal>         
                 <Row gutter={16}>
                     {this.state.cols}
