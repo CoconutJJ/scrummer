@@ -19,6 +19,12 @@ class MySQLDriver {
         }
     }
 
+    public destroy() {
+        if (this.mysqlPool) {
+            this.mysqlPool.end()
+        }
+    }
+
     /**
      * Sends a query to the database and returns results list.
      * @param query 
@@ -58,6 +64,11 @@ class MySQLDriver {
      * @param pool 
      */
     public static usePool(pool: Pool) {
+        
+        if (MySQLDriver.driver) {
+            MySQLDriver.driver.destroy();
+        }
+
         MySQLDriver.driver = new MySQLDriver(pool)
 
         return MySQLDriver.driver;
