@@ -1,3 +1,7 @@
+CREATE DATABASE IF NOT EXISTS `scrummer`
+
+USE scrummer;
+
 CREATE TABLE IF NOT EXISTS `tickets`
 (                                         
   `id` int(11) NOT NULL AUTO_INCREMENT,                          
