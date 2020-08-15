@@ -32,8 +32,7 @@ class ScrumBoard extends React.Component<IProps, IState> {
     }
 
     addColumn = () => {
-
-
+        
         let newCol = (
             <Col span={4} key={this.key}>
                 <BoardCol title={"New Column"} editable={true} onDelete={() => this.deleteColumn(newCol)} />
