@@ -1,13 +1,14 @@
 import React from 'react';
 import { Col, Row, Button, Input } from 'antd'
 import {
-    EditOutlined
+    EditOutlined, MinusOutlined
 } from '@ant-design/icons';
 import 'antd/dist/antd.css'
 
 interface IProps {
     title: string
     editable: boolean
+    onDelete: () => void
 }
 
 interface IState {
@@ -67,7 +68,10 @@ class BoardCol extends React.Component<IProps, IState> {
 
                     {
                         !this.state.editable
-                            ? <Button style={{ float: "right" }} icon={<EditOutlined />} onClick={this.setEditable}></Button>
+                            ? <>
+                                <Button style={{ float: "right" }} icon={<EditOutlined />} onClick={this.setEditable}></Button>
+                                <Button style={{ float: "right" }} icon={<MinusOutlined />} onClick={this.props.onDelete}></Button>
+                            </>
                             : (null)
                     }
 

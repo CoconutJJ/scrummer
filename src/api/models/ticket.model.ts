@@ -13,14 +13,14 @@ namespace Models {
             this.dbh = MySQLDriver.getDriver();
         }
 
-        public async createTicket(ticket: ITicket): Promise<boolean> {
+        public async createTicket(ticket: ITicket): Promise<number> {
 
             let [columns, params, values] = DBUtils.createNameParamValueArrays(ticket);
 
             columns = columns.map((v) => "`" + v + "`")
 
             try {
-                const _ = await this.dbh.query(
+                const results = await this.dbh.query(
                     "INSERT INTO ticket " +
                     "(" + columns.join(",") + ")" +
                     "VALUES" +
@@ -28,10 +28,10 @@ namespace Models {
 
                     values
                 );
-                return true;
+                return results['insertId']
             }
             catch (e) {
-                return false;
+                return -1;
             }
 
         }

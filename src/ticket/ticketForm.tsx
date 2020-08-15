@@ -29,6 +29,17 @@ class TicketForm extends React.Component<IProps, IState> {
         }
     }
 
+
+    componentDidMount = () => {
+
+        for (let key in this.state) {
+
+            this.props.onFormUpdate(key as keyof IState, "");
+
+        }
+
+    }
+
     updateTicketField = (column: keyof IState) => {
 
         let f = (value: any) => {

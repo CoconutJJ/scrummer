@@ -1,9 +1,13 @@
 import React from 'react';
-import { Col, Row, Button, Divider, Modal } from 'antd'
+import { Col, Row, Button, Divider, Modal, message } from 'antd'
 
 import 'antd/dist/antd.css'
 import BoardCol from './boardCol';
 import TicketForm from '../ticket/ticketForm';
+
+const { confirm } = Modal;
+
+
 interface IProps {
 
 }
@@ -11,6 +15,7 @@ interface IProps {
 interface IState {
     cols: Array<JSX.Element>
     ticketCreateModal: boolean
+    confirmTicketDelete: boolean
 }
 class ScrumBoard extends React.Component<IProps, IState> {
 
@@ -18,16 +23,42 @@ class ScrumBoard extends React.Component<IProps, IState> {
         super(props);
         this.state = {
             cols: [],
-            ticketCreateModal: false
+            ticketCreateModal: false,
+            confirmTicketDelete: false
         }
     }
 
-    addColumn = (title) => {
+    addColumn = () => {
 
+
+        let newCol = (
+            <Col span={4}>
+                <BoardCol title={"New Column"} editable={true} onDelete={() => this.deleteColumn(newCol)} />
+            </Col>
+        )
         this.setState({
-            cols: [...this.state.cols, <Col span={4}><BoardCol title={"New Column"} editable={true}/></Col>]
+            cols: [...this.state.cols, newCol
+            ]
         })
-        
+
+    }
+
+    deleteColumn = (element: JSX.Element) => {
+
+        confirm({
+            title: "Confirm Deletion",
+            content: "Are you sure you would like to delete the following column and move its tickets to backlog?",
+            onOk: () => {
+                this.setState({
+                    cols: this.state.cols.filter((v => v !== element))
+                })
+                message.info("Column has been deleted")
+            },
+            onCancel: () => {
+
+            }
+        })
+
     }
 
     openCreateTicketModal = () => {
@@ -47,15 +78,25 @@ class ScrumBoard extends React.Component<IProps, IState> {
             <>
                 <Button type="primary" onClick={this.openCreateTicketModal}>Create Ticket</Button>
                 <Button type="dashed" onClick={this.addColumn}>Add Column</Button>
-                <Divider/>       
+                <Divider />
                 <Modal title="Create Ticket" width={"90%"} visible={this.state.ticketCreateModal} onCancel={this.closeCreateTicketModal} footer={
                     [
                         <Button type="dashed" onClick={this.closeCreateTicketModal}>Cancel</Button>,
                         <Button type="primary">Create</Button>
                     ]
                 }>
-                    <TicketForm onFormUpdate={() => {}}/>
-                </Modal>         
+                    <TicketForm onFormUpdate={() => { }} />
+                </Modal>
+
+                <Modal title="Confirm Deletion" visible={this.state.confirmTicketDelete} footer={
+                    [
+                        <Button type="dashed">No</Button>,
+                        <Button type="primary">Yes</Button>
+                    ]
+                }>
+
+                </Modal>
+
                 <Row gutter={16}>
                     {this.state.cols}
 
