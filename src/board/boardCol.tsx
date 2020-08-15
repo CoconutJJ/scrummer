@@ -62,7 +62,7 @@ class BoardCol extends React.Component<IProps, IState> {
                         {
                             this.state.editable
                                 ? <Input type="text" value={this.state.title} onChange={this.onTitleChange} />
-                                : this.props.title
+                                : this.state.title
                         }
                     </h3>
 

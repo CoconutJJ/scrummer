@@ -19,6 +19,8 @@ interface IState {
 }
 class ScrumBoard extends React.Component<IProps, IState> {
 
+    private key = 0;
+
     constructor(props: Readonly<IProps>) {
         super(props);
         this.state = {
@@ -26,13 +28,14 @@ class ScrumBoard extends React.Component<IProps, IState> {
             ticketCreateModal: false,
             confirmTicketDelete: false
         }
+        
     }
 
     addColumn = () => {
 
 
         let newCol = (
-            <Col span={4}>
+            <Col span={4} key={this.key}>
                 <BoardCol title={"New Column"} editable={true} onDelete={() => this.deleteColumn(newCol)} />
             </Col>
         )
@@ -40,6 +43,7 @@ class ScrumBoard extends React.Component<IProps, IState> {
             cols: [...this.state.cols, newCol
             ]
         })
+        this.key++;
 
     }
 
