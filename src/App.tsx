@@ -23,13 +23,13 @@ class App extends React.Component<IProps, IState> {
               <ScrumBoard/>
             </TabPane>
             <TabPane tab="Tickets" key="2">
-              
+              Content to Tab Pane 2
             </TabPane>
             <TabPane tab="Charts" key="3">
               Content of Tab Pane 3
             </TabPane>
             <TabPane tab="Settings" key="4">
-
+              Content to Tab Pan 4
             </TabPane>
           </Tabs>
         </div>
