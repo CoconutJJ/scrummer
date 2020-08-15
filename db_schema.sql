@@ -1,4 +1,4 @@
-CREATE DATABASE IF NOT EXISTS `scrummer`
+CREATE DATABASE IF NOT EXISTS `scrummer`;
 
 USE scrummer;
 
@@ -15,4 +15,11 @@ CREATE TABLE IF NOT EXISTS `tickets`
   `priority` int(11) DEFAULT NULL,                                 
   `due_date` datetime DEFAULT NULL,                                
   PRIMARY KEY(`id`)                                               
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE `issue_types` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `issue_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `project` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
