@@ -37,11 +37,12 @@ class ScrumBoard extends React.Component<IProps, IState> {
             <Col span={4} key={this.key}>
                 <BoardCol title={"New Column"} editable={true} onDelete={() => this.deleteColumn(newCol)} />
             </Col>
-        )
+        );
+        let button = this.state.cols.pop();
         this.setState({
-            cols: [...this.state.cols, newCol
+            cols: [...this.state.cols, newCol, button
             ]
-        })
+        });
         this.key++;
 
     }
@@ -80,7 +81,6 @@ class ScrumBoard extends React.Component<IProps, IState> {
         return (
             <>
                 <Button type="primary" onClick={this.openCreateTicketModal}>Create Ticket</Button>
-                <Button type="dashed" onClick={this.addColumn}>Add Column</Button>
                 <Divider />
                 <Modal title="Create Ticket" width={"90%"} visible={this.state.ticketCreateModal} onCancel={this.closeCreateTicketModal} footer={
                     [
@@ -102,7 +102,7 @@ class ScrumBoard extends React.Component<IProps, IState> {
 
                 <Row gutter={16}>
                     {this.state.cols}
-
+                    <Button type="dashed" onClick={this.addColumn}>Add Column</Button>
                 </Row>
             </>
         );
