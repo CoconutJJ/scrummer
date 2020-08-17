@@ -28,11 +28,11 @@ class ScrumBoard extends React.Component<IProps, IState> {
             ticketCreateModal: false,
             confirmTicketDelete: false
         }
-        
+
     }
 
     addColumn = () => {
-        
+
         let newCol = (
             <Col span={4} key={this.key}>
                 <BoardCol title={"New Column"} editable={true} onDelete={() => this.deleteColumn(newCol)} />
@@ -102,7 +102,10 @@ class ScrumBoard extends React.Component<IProps, IState> {
 
                 <Row gutter={16}>
                     {this.state.cols}
-                    <Button type="dashed" onClick={this.addColumn}>Add Column</Button>
+                    <Col span={4}>
+                        <Button type="dashed" onClick={this.addColumn} block>Add Column</Button>
+                    </Col>
+
                 </Row>
             </>
         );

@@ -1,9 +1,10 @@
 import React from 'react';
 import { Tabs } from 'antd'
 const { TabPane } = Tabs;
-
+import './styles/layout.scss'
 import 'antd/dist/antd.css'
 import ScrumBoard from './board/scrumBoard';
+
 interface IProps {
 
 }
@@ -16,9 +17,9 @@ class App extends React.Component<IProps, IState> {
   render(): React.ReactNode {
     return (
       <>
-        <div style={{height: "100%", padding: "10px" }}>
+        <div style={{ height: "100%" }}>
           <h1>Project Title</h1>
-          <Tabs defaultActiveKey="1" style={{minHeight: "70vh"}}>
+          <Tabs defaultActiveKey="1" style={{minHeight: "75vh"}}>
             <TabPane tab="Board" key="1">
               <ScrumBoard/>
             </TabPane>
