@@ -13,8 +13,9 @@
     "redux": "^4.0.5"
   },
   "scripts": {
+    "start": "npm run build-prod",
     "build-dev": "npx tsc --p tsconfig.srv.json; NODE_ENV='development' npx webpack; NODE_ENV='development' node build/server.js ",
-    "build-prod": "npx tsc --p tsconfig.srv.json; NODE_ENV='production' npx webpack; cd build; NODE_ENV='production' node server.js ",
+    "build-prod": "npx tsc --p tsconfig.srv.json; NODE_ENV='production' npx webpack; NODE_ENV='production' node build/server.js ",
     "test-client": "npx jest tests/client",
     "test-srv": "npx jest tests/srv"
   },

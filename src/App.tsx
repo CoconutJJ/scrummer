@@ -30,7 +30,7 @@ class App extends React.Component<IProps, IState> {
               Content of Tab Pane 3
             </TabPane>
             <TabPane tab="Settings" key="4">
-              Content to Tab Pan 4
+              Content to Tab Pane 4
             </TabPane>
           </Tabs>
         </div>

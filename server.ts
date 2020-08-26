@@ -2,6 +2,7 @@ import express from 'express'
 import path from 'path'
 import dotenv from 'dotenv'
 import mysql from 'mysql'
+import bodyParser from 'body-parser'
 
 const app = express();
 
@@ -12,6 +13,8 @@ dotenv.config(
         path: process.env.NODE_ENV.toUpperCase() == "PRODUCTION" ? "production.env" : "development.env"
     }
 );
+
+app.use(bodyParser.json());
 
 app.use('/static', express.static(path.join(process.env.BASE_PATH, "assets")))
 
